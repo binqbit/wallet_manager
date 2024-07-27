@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  backend:
+    build:
+      context: ./wallet_manager-backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    depends_on:
+      - localnet
+    env_file:
+      - ./wallet_manager-backend/.env
+    restart: unless-stopped
+
+  localnet:
+    image: trufflesuite/ganache-cli:latest
+    ports:
+      - "8545:8545"
+    volumes:
+      - ./localnet-data:/localnet-data
+    environment:
+      - .env
+    command:
+      - "--db"
+      - "/localnet-data"
+      - "--account"
+      - "${PRIVATE_KEY},1000000000000000000000"
+    restart: unless-stopped
+
+volumes:
+  localnet-data:

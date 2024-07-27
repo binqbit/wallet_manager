@@ -1,0 +1,7 @@
+[submodule "backend"]
+	path = wallet_manager-backend
+	url = https://github.com/binqbit/wallet_manager-backend
+
+[submodule "smart-contract"]
+	path = wallet_manager-smart_contract
+	url = https://github.com/binqbit/wallet_manager-smart_contract
